@@ -6,7 +6,7 @@ before((done) => {
 	mongoose.connect('mongodb://localhost/users_test');
 	mongoose.connection
 		.once('open', () => {
-			console.log('mongo and mongoose connected')
+			console.log('mongo and mongoose connected');
 			done();
 		})
 		.on('error', (error) => {
