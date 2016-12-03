@@ -8,4 +8,11 @@ describe('Validating records', () => {
 		const { message } = validationResult.errors.name;
 		assert( message === 'Name is required.');
 	});
+
+	it('requires a user name longer than 2 characters', () => {
+		const user = new User( { name: 'Al' });
+		const validationResult = user.validateSync();
+		const { message } = validationResult.errors.name;
+		assert( message === 'Name should be at least 3 characters.');
+	});
 });
