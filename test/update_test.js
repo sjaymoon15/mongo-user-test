@@ -43,7 +43,7 @@ describe('Updating records', () => {
 		assertName( User.findByIdAndUpdate({ _id: joe._id}, { name: 'Kay'}), done);
 	});
 
-	it('A user can have their postcount incremented by 1', (done) => {
+	xit('A user can have their postcount incremented by 1', (done) => {
 		//let's use update operator(modifier)
 		User.update({ name: 'Joe' }, { $inc: { postCount : 1} })
 		.then(() => User.findOne({ name: 'Joe' }))
