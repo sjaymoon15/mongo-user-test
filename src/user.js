@@ -23,6 +23,16 @@ UserSchema.virtual('postCount').get(function(){
 	return this.posts.length;
 });
 
+UserSchema.pre('remove', function(next) {
+	//this === joe
+	// instead of using BlogPost.remove... directly use direct ref mongoose.model(blogPost) 
+	// to avoid cyclic requires
+	const BlogPost = mongoose.model('blogPost');
+	// don't this.blogPosts.each(id => ...)
+	BlogPost.remove({ _id: { $in: this.blogPosts }})
+	.then(() => next());
+});
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;
